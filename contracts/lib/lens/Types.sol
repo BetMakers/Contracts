@@ -398,6 +398,13 @@ library Types {
         bytes data;
     }
 
+    struct ProcessBetMakerParams {
+        uint256 pubId;
+        uint256 profileId;
+        address betterAddress;
+        uint256 result;
+    }
+
     /**
      * @notice A struct containing a profile's delegated executors configuration.
      *

@@ -1,0 +1,10 @@
+{
+  "transactions": [
+    {
+      "rpc": "https://rpc-mumbai.maticvigil.com"
+    },
+    {
+      "rpc": "https://rpc-mumbai.maticvigil.com"
+    }
+  ]
+}
