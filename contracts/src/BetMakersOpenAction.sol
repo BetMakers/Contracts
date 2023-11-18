@@ -23,16 +23,19 @@ contract BetMakersOpenAction is HubRestricted, IPublicationActionModule {
 
     function initializePublicationAction(
         uint256 profileId,
-        uint256 pubId,
+        uint256 pubId, // publication id
         address /* transactionExecutor */,
         bytes calldata data
     ) external override onlyHub returns (bytes memory) {
+      // TODO: only callable for team token holder
         /* result
         0 = draw
         1 = first wins
         2 = second wins
         */
-        (string memory matchId, uint256 bet,uint256 result, address profileAddress) = abi.decode(data, (string, uint256, uint256, address));
+        (string memory matchId, uint256 bet,uint256 result, 
+         address profileAddress // poly address
+        ) = abi.decode(data, (string, uint256, uint256, address));
         // Crea un pozo depositalo
         //require(msg.sender has fantoken)
         matchPool[pubId] += bet;
@@ -48,6 +51,8 @@ contract BetMakersOpenAction is HubRestricted, IPublicationActionModule {
     function processPublicationAction(
         Types.ProcessActionParams calldata params
     ) external override onlyHub returns (bytes memory) {
+      // TODO: only callable for team token holder (percentage)
+      // TODO: not callable after game start
      
       matchPool[params.publicationActedId] += matchBet[params.publicationActedId];
       (uint256 result) = abi.decode(params.actionModuleData, (uint256));
